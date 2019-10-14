@@ -1,5 +1,6 @@
 package com.vito16.shop.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
@@ -10,13 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author Vito
- * @email zhouwentao16@gmail.com
- * @date 2013-7-9
- */
-@Setter
-@Getter
+
+@Data
 @Entity
 @DynamicUpdate
 @Table(name = "t_product")

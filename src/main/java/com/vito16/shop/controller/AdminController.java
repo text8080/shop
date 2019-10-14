@@ -25,8 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 /**
- * @author Vito zhouwentao16@gmail.com
- * @date 2013-7-8
+ * 管理员登录注册操作
  */
 @Controller
 @Slf4j
@@ -53,16 +52,27 @@ public class AdminController {
         return "redirect:/";
     }
 
+    /**
+     * 跳转到管理员登录页面
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "admin/adminLogin";
     }
+
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String testIndex() {
         return "admin/index";
     }
 
+    /**
+     * 管理员提交登录
+     * @param admin
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String doLogin(Admin admin, HttpSession session) {
         if (adminService.checkLogin(admin)) {

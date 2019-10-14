@@ -1,7 +1,9 @@
 package com.vito16.shop.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -9,11 +11,10 @@ import java.util.Date;
 
 /**
  * 图片
- * @author 木鱼 muyu@yiji.com
- * @version 2014/10/14
+ * @author 陈浩
+ * @version 2019/10/14
  */
-@Setter
-@Getter
+@Data
 @Entity
 @DynamicUpdate
 @Table(name = "t_picture")

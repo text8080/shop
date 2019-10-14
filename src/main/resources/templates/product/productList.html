@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>商品列表</title>
     <div th:replace="common_cssjs"></div>
@@ -12,8 +13,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-sm-4 col-xs-6 text-center" th:each="product : ${page.result}" th:pid="@{${product.id}}" pid="100">
-            <a th:href="@{'/product/'+${product.id}}"><img class="img-thumbnail" th:src="${product.masterPic.url}"
-                                                          style="width: 140px; height: 140px;"></a>
+            <a th:href="@{'/product/'+${product.id}}">
+
+                <!--<p th:text="${product.masterPic.title}"></p>-->
+                <img class="img-thumbnail" th:src="@{${product.masterPic.url}}"
+                                                          style="width: 140px; height: 140px;">
+            </a>
             <p th:text="${product.title}">商品标题</p>
 
             <p th:text="${product.point}">商品价格</p>

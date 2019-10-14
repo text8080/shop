@@ -29,14 +29,16 @@ import java.io.FileOutputStream;
 import java.util.Date;
 
 /**
- * @author 木鱼 muyu@yiji.com
- * @version 2017/6/1
+ * 后台管理控制器
  */
 @Slf4j
 @Controller
 @RequestMapping(value = "/admin/product")
 public class ProductAdminController {
 
+    /*
+    图片上传地址
+     */
     @Value("${app.upload.location}")
     public String uploadingDir;
 
@@ -47,6 +49,13 @@ public class ProductAdminController {
     @Autowired
     PictureService pictureService;
 
+    /**
+     * 跳转到后台管理主页面
+     * @param model
+     * @param session
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView admin(ModelAndView model, HttpSession session, HttpServletRequest request) {
         Page<Product> page = new Page<Product>(request);
@@ -56,6 +65,11 @@ public class ProductAdminController {
         return model;
     }
 
+    /**
+     * 跳转到添加商品页面
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newForm(HttpSession session) {
         if (AdminUtil.getAdminFromSession(session) == null) {
@@ -64,6 +78,13 @@ public class ProductAdminController {
         return "product/productNew";
     }
 
+    /**
+     * 添加商品
+     * @param product
+     * @param session
+     * @param file
+     * @return
+     */
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String doNew(Product product, HttpSession session, @RequestParam("file") MultipartFile file) {
         if (file!=null&&!file.isEmpty()) {
@@ -75,6 +96,12 @@ public class ProductAdminController {
         return "redirect:/admin/product";
     }
 
+    /**
+     * 跳转到编辑商品页面
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView edit(ModelAndView model, @PathVariable Integer id) {
         Product product = productService.findById(id);
@@ -83,6 +110,14 @@ public class ProductAdminController {
         return model;
     }
 
+    /**
+     * 编辑商品
+     * @param model
+     * @param product
+     * @param session
+     * @param file
+     * @return
+     */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView doEdit(ModelAndView model, Product product, HttpSession session, @RequestParam(name = "file",required = false) MultipartFile file) {
         if (file!=null&&!file.isEmpty()) {

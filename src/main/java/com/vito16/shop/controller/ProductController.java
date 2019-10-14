@@ -36,6 +36,7 @@ public class ProductController {
         Page<Product> page = new Page<Product>(request);
         productService.findProducts(page);
         model.addObject("page", page);
+        System.out.println("===>>>"+page.getResult());
         model.setViewName("product/productList");
         return model;
     }
